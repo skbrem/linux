@@ -37,7 +37,7 @@ tags:
 
 | Description | Command |
 | --- | --- |
-| Switching to a different branch | `git switch <name> or <git checkout <name>` |
+| Switching to a different branch | `git switch <name>` or `<git checkout <name>` |
 | Creating a branch | `git switch -c` or `git checkout -b` |
 | Listing branches | `git branch` |
 | Listing branches by the last that was committed to | `git branch --sort-committerdate` |
@@ -56,7 +56,16 @@ tags:
 
 | Description | Command |
 | --- | --- |
-| 
+| Diff between commit and parent | `git show <commit>` |
+| Diff of two commits | `git diff <commit> <commit>` |
+| Diff of one file since making commit | `git diff <commit> <file>` |
+| Summary of diff | `git diff <commit> --stat` or `git show <commit> --stat` |
+
+## Discarding changes
+
+| Description | Command |
+| --- | --- |
+
 
 
 

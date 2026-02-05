@@ -48,7 +48,15 @@ tags:
 
 | Description | Command |
 | --- | --- |
+| Diff staged and unchanged changed | `git diff HEAD` |
+| Diff only staged changes | `git diff --staged` |
+| Diff only unstaged changes | `git diff` |
 
+## Diff committing
+
+| Description | Command |
+| --- | --- |
+| 
 
 
 

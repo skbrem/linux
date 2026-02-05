@@ -31,7 +31,7 @@ tags:
 | --- | --- |
 | Make a commit (which also opens up a text editor to write a note) | `git commit` |
 | Making a commit with message | `git commit -m 'message'` |
-| Commit every unstaged changed | `git commit -am 'message'` |
+| Commit every unstaged change | `git commit -am 'message'` |
 
 ## Branches
 
@@ -65,7 +65,10 @@ tags:
 
 | Description | Command |
 | --- | --- |
+| Deleting changes on a file that are unstaged | `git restore <file>` or `git checkout <file>` |
+| Deleting all staged & unstaged changes to a single file | `git restore --staged --worktree <file>` or `git checkout HEAD <file>` |
+| Deleting all staged & unstaged changes | `git reset --hard` |
+| Deleting untracked files | `git clean` |
+| Stashinng staged & unstaged changed | `git stash` |
 
-
-
-
+## 

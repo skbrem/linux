@@ -78,4 +78,21 @@ Allows a user to modify the contents of a directory, which means either adding o
 
 Execute in regard to directories is very different to files. It's easy to understand it as providing access to the directory. It authorizes a user to view extended information about a directory, such as using `ls -l`, which also allowing a user to change to the directory using `cd` and to pass through the directory to subdirectories. 
 
-Without the execute permission, 
+Without the execute permission, it's not possible to add new files to a directory, even if the write persmission has been granted, because it's impossible to access the metadata of the directory in question. It's for this reason that the execute permission is typically granted to one or more user owners, group owners, or others. 
+
+## Modifying Permissions
+
+The `chmod` command is used to modify the permissions of a file or directory. (`chmod` stands for "change mode"). in order to change the permissions on a file, choose the type of permission structure you want to use - symbolic or absolute - and then use the `chmod` command, followed by the permission modifier, and then the file/directory name. 
+
+For example:
+
+`chmod 744 file.txt` 
+
+Another example:
+
+`chmod ug+rwx file.txt`
+`chmod o+r file2.txt`
+
+In the `chmod ug+rwx file.txt` example, the command changes the permissions for the user (`u`) and for the group (`g`), giving both read(`r`), write(`w`), and execute(`x`) permissions. The `o` is for other users that are not in the file group. In order to change the permissions for all users, use `chmod a`. 
+
+It's also possible to change the owners of a file, which can be done with `chown` for users and `chgrp` for groups. 

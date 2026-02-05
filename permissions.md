@@ -1,6 +1,6 @@
 The `ls` command is used to view metadata about files on Linux. 
 
-``` bash
+```bash
 $ ls -l
 drwxr-xr-x. 4 root root    68 Jun 13 20:25 tuned
 -rw-r--r--. 1 root root  4017 Feb 24  2022 vimrc
@@ -14,5 +14,5 @@ drwxr-xr-x. 4 root root    68 Jun 13 20:25 tuned
 
 ## How to Read File Permission
 
-> ![example]
+> [!example]
 > `rw-r--r--`

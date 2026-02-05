@@ -43,7 +43,7 @@ When Linux permissions are changed using numbers, this is known as **numeric mod
 - x(execute): 1 
 
 > [!note]
-> The permission of `744`, for example, shows that `7` belongs to the user, the first `4` belongs to the group, and the third `4` belongs to others. Adding up the values of each one shows you what permissions have been granted over. 
+> The permission of `744`, for example, shows that `7` belongs to the user, the first `4` belongs to the group, and the second `4` belongs to others. Adding up the values of each one shows you what permissions have been granted over. 
 >
 > - Owner: rwx = 4+2+1 = 7
 > - Group: r-- = 4+0+0 = 4 

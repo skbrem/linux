@@ -71,4 +71,8 @@ tags:
 | Deleting untracked files | `git clean` |
 | Stashinng staged & unstaged changed | `git stash` |
 
-## 
+## Editing the history
+
+| Description | Command |
+| --- | --- |
+| 

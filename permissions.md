@@ -42,7 +42,7 @@ When Linux permissions are changed using numbers, this is known as **numeric mod
 - x(execute): 1 
 
 > [!note]
-> The permission of `744`, for example, shows that `7` belongs to the user, the first `4` belongs to the group, and the second `4` belongs to others. Adding up the values of each one shows you what permissions have been granted over. 
+> The permission of `744`, for example, shows that `7` belongs to the user, the first `4` belongs to the group, and the second `4` belongs to others. Adding up the values of each one shows you what permissions have been granted. 
 >
 > - Owner: rwx = 4+2+1 = 7
 > - Group: r-- = 4+0+0 = 4 
@@ -93,6 +93,6 @@ Another example:
 `chmod ug+rwx file.txt`
 `chmod o+r file2.txt`
 
-In the `chmod ug+rwx file.txt` example, the command changes the permissions for the user (`u`) and for the group (`g`), giving both read(`r`), write(`w`), and execute(`x`) permissions. The `o` is for other users that are not in the file group. In order to change the permissions for all users, use `chmod a`. 
+In the `chmod ug+rwx file.txt` example, the command changes the permissions for the user `u` and for the group `g`, giving both read(`r`), write(`w`), and execute(`x`) permissions. The `o` is for other users that are not in the file group. In order to change the permissions for all users, use `chmod a`. 
 
 It's also possible to change the owners of a file, which can be done with `chown` for users and `chgrp` for groups. 

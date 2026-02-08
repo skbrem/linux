@@ -12,3 +12,5 @@ Use `ls` as well as two arguments, the first to modify the command and the secon
 > [!tip] 
 > - `ls -l` for the current working directory.
 > - `ls -l ~` For the home directory.
+
+Use `ls -d */` to list only the subdirectories within a directory. 

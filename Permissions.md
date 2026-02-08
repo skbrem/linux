@@ -5,7 +5,7 @@ tags:
   - security
 ---
 
-The `ls` command is used to view metadata about files on Linux. 
+The [[ls]] command provides metadata about files on a Linux system.
 
 ```bash
 $ ls -l
@@ -15,91 +15,88 @@ drwxr-xr-x. 4 root root    68 Jun 13 20:25 tuned
 
 - File type: `-`
 - Permission settings: `rw-r--r--`
-- Extended attributes: `(.)`
+- Extended attributes: (`.`)
 - User owner: `root`
 - Group owner: `root`
 
-## How to Read File Permission
-
+## Reading file permissions
+ 
 `rw-r--r--`
 
-These represent 3 separate items:
+This represents the following:
 
 1. `rw-`
 2. `r--`
 3. `r--`
 
-The first applies to the owner of the file. The second applies to the group that owns the file. The third is referred to as the "others". 
+The first set of permissions applies to the owner of the file. The second applies to the group that owns the file. The third set is referred to as 'others'. 
 
-When permissions are set using letters, it's known as **symbolic** mode. 
+When permissions and users are represented by letters, that is called **symbolic mode**. 
 
-- User:     `u`
-- Group :   `g`
-- Others:   `o`
-- Read:     `r`
-- Write:    `w`
-- Execute:  `x`
+- User: `u`
+- Group: `g`
+- Others: `o`
+- Read: `r`
+- Write: `w`
+- Execute: `x`
 
 ## Octal Values
 
-When Linux permissions are changed using numbers, this is known as **numeric mode** or **absolute mode**. A 3-digit number represents specific file permissions, which are known as octal values. The first represents the owner permissions, the second group permissions, and the third is for others.
+When Linux permissions are represented by numbers, this is known as **numeric mode** or **absolute mode**. In numeric mode, a 3 digit value represents specific file permissions, known as octal values. The first is for owner permissions, the second for group permissions, and the third for others. 
 
-- r(read): 4 
-- w(write): 2 
-- x(execute): 1 
+- r (read): 4
+- w (write): 2
+- x (execute): 1
 
-> [!note]
-> The permission of `744`, for example, shows that `7` belongs to the user, the first `4` belongs to the group, and the second `4` belongs to others. Adding up the values of each one shows you what permissions have been granted. 
->
+> [!tip]
+>  In the permission value 744, the first digit corresponds to the user, the second to the group, and the third to others. Adding up the values of each classification allows you to find the file permissions. 
+> 
 > - Owner: rwx = 4+2+1 = 7
-> - Group: r-- = 4+0+0 = 4 
-> - Others: r-- = 4+0+0 = 4
+> - Group: r-- = 4+0+0 = 4
+> - Others r-- = 4+0+0 = 4
 
-## Understanding Permissions
-
-### Read (r)
-
-The read permissions allows a user or group to access the contents of a file. Tools like `less` or `cat` can be used on a file to show the contents if the read permission has been granted. The read permission is needed in order to make copies of a file as access to the content is needed for duplication. 
-
-### Write (w)
-
-The write permissions is needed to change or modify the contents of a file. Along with this, the write permission grants the user the ability to redirect or append operators within the shell in order to modify the file's contents. 
-
-### Execute (x)
-
-The execute permissions allows the user to execute the contents of a file. This includes running commands or compiled binary applications. The execute persmission is also needed in order to run Bash shell scripts, as well as Python scripts and other interpreted languages. 
-
-## Understanding Directory Permissions
-
-A `d` signifies the directory file type. Although permissions act the same way for directories, they are interpreted differently. 
+## What do permissions do?
 
 ### Read (r)
 
-The read permission allows the user to view the files within a directory. This permission is required when attempting to use `ls` and other similar commands. 
+Read permission is used to access the file's contents. You can use a tool like `cat` or `less` on the file to display the file contents. You could also use a text editor like Vi or `view` on the file to display the contents of the file. Read permission is required to make copies of a file, because you need to access the file's contents to make a duplicate of it.
 
 ### Write (w)
 
-Allows a user to modify the contents of a directory, which means either adding or removing files from a directory. Commands like `mv` and `rm` require the write permission to function. Write is also needed in order to create new files with `touch` or to copy files with `cp` from and into the directory.
+Write permission allows you to modify or change the contents of a file. Write permission also allows you to use the redirect or append operators in the shell (`>` or `>>`) to change the contents of a file. Without write permission, changes to the file's contents are not permitted.
 
 ### Execute (x)
 
-Execute in regard to directories is very different to files. It's easy to understand it as providing access to the directory. It authorizes a user to view extended information about a directory, such as using `ls -l`, which also allowing a user to change to the directory using `cd` and to pass through the directory to subdirectories. 
+Execute permission allows you to execute the contents of a file. Typically, executables would be things like commands or compiled binary applications. However, execute permission also allows someone to run Bash shell scripts, Python programs, and a variety of interpreted languages.
 
-Without the execute permission, it's not possible to add new files to a directory, even if the write persmission has been granted, because it's impossible to access the metadata of the directory in question. It's for this reason that the execute permission is typically granted to one or more user owners, group owners, or others. 
+## How do directory permissions work?
 
-## Modifying Permissions
+Directory file types are indicated with `d`. Conceptually, permissions act the same way, but directories interpret these operations differently. 
 
-The `chmod` command is used to modify the permissions of a file or directory. (`chmod` stands for "change mode"). in order to change the permissions on a file, choose the type of permission structure you want to use - symbolic or absolute - and then use the `chmod` command, followed by the permission modifier, and then the file/directory name. 
+### Read (r)
 
-For example:
+Like regular files, this permission allows you to read the contents of the directory. However, that means that you can view the contents (or files) stored within the directory. This permission is required to have things like the `ls` command work.
 
-`chmod 744 file.txt` 
+### Write (w)
 
-Another example:
+As with regular files, this allows someone to modify the contents of the directory. When you are changing the contents of the directory, you are either adding files to the directory or removing files from the directory. As such, you must have write permission on a directory to move (`mv`) or remove (`rm`) files from it. You also need write permission to create new files (using `touch` or a file-redirect operator) or copy (`cp`) files into the directory.
 
-`chmod ug+rwx file.txt`
-`chmod o+r file2.txt`
+### Execute (x)
 
-In the `chmod ug+rwx file.txt` example, the command changes the permissions for the user `u` and for the group `g`, giving both read(`r`), write(`w`), and execute(`x`) permissions. The `o` is for other users that are not in the file group. In order to change the permissions for all users, use `chmod a`. 
+This permission is very different on directories compared to files. Essentially, you can think of it as providing access to the directory. Having execute permission on a directory authorizes you to look at extended information on files in the directory (using `ls -l`, for instance) but also allows you to change your working directory (using `cd`) or pass through this directory on your way to a subdirectory underneath.
 
-It's also possible to change the owners of a file, which can be done with `chown` for users and `chgrp` for groups. 
+Lacking execute permission on a directory can limit the other permissions in interesting ways. For example, how can you add a new file to a directory (by leveraging the write permission) if you can't access the directory's metadata to store the information for a new, additional file? You cannot. It is for this reason that directory-type files generally offer execute permission to one or more of the user owner, group owner, or others.
+
+## How do you modify Linux file permissions?
+
+You can modify file and directory permissions with the `chmod` command, which stands for "change mode." To change file permissions in numeric mode, you enter `chmod` and the octal value you desire, such as 744, alongside the file name. To change file permissions in symbolic mode, you enter a user class and the permissions you want to grant them next to the file name. 
+
+> [!tip]
+> ```bash
+> $ chmod ug+rwx example.txt
+> $ chmod o+r example2.txt
+> ```
+
+This grants read, write, and execute for the user and group, and only read for others. In symbolic mode, `chmod u` represents permissions for the user owner, `chmod g` represents other users in the file's group, `chmod o` represents other users not in the file's group. For all users, use `chmod a`.
+
+Maybe you want to change the user owner itself. You can do that with the `chown` command. Similarly, the `chgrp` command can be used to change the group ownership of a file.

@@ -1,6 +1,6 @@
 `cd` (Change Directory) is the primary method of getting around the Linux file system.
 
-| Description | Command |
+| Command | Description |
 | --- | --- |
 | `cd` <directory> | Move from current directory to directory specified. |
 | `cd` .. | Move up to the parent level - move up from current directory. |

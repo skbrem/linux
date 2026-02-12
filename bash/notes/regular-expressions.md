@@ -39,7 +39,7 @@ Any character apart from these is considered literal. The backslash is sometimes
 > [!tip]
 > Many metacharacters are the same characters that Bash will expand when used. This means that it's a good idea to enclose characters in quotes when using regular expression to stop the shell from trying to expand them.
 
-### Any character
+## Any character
 
 The dot or period character is used to match any character, matching any character where the dot is placed. 
 
@@ -47,11 +47,11 @@ The dot or period character is used to match any character, matching any charact
 
 It's interesting to note that adding the any character as a dot increases the regex size to 4 characters, meaning that names that are 3 characters in length will not be included in the result. Any files that have the file extension `.zip` will also have been matched. 
 
-### Anchors
+## Anchors
 
 The dollar sign $ and the caret ^ are known as anchors. It means that the match only takes place if the regular expression is found at the end of the line $ or at the beginning of the line ^. 
 
-```
+```bash
 [me@linuxbox ~]$ grep -h '^zip' dirlist*.txt
 zip
 zipcloak
@@ -75,7 +75,7 @@ zip
 > [!note]
 > Using `^$` with nothing in between will match blank lines.
 
-### Bracket Expansion and Character Classes
+## Bracket Expansion and Character Classes
 
 Bracket expansion allow us to specify a set of characters, which includes characters that would otherwise be metacharacters to be matched with.
 
@@ -94,7 +94,7 @@ Metacharacters lose their meaning in brackets, and expect for two cases:
 - The caret ^ indicates negation
 - The dash - indicates a character range
 
-#### Negation
+### Negation
 
 If the caret ^ is found at the beginning of the bracket expansion, the other characters in the brackets are interpreted as characters that must not be included at the given character position. 
 
@@ -102,7 +102,7 @@ If the caret ^ is found at the beginning of the bracket expansion, the other cha
 
 The ^ only works when at the front of the bracket expansion. If placed anywhere else, it acts as a regular literal character within the set.
 
-#### Traditional Character Ranges
+### Traditional Character Ranges
 
 If we wanted to create a regex that found every file in our lists that began with an uppercase letter, the long and inefficient way to do it would be to use:
 
@@ -120,7 +120,7 @@ In order to include a dash - character in the bracket expansion, make it the fir
 
 `grep -h '[-AZ]' dirlist*.txt`
 
-#### POSIX Character Classes
+### POSIX Character Classes
 
 | Character Class | Description |
 | --- | ---- |
@@ -148,7 +148,7 @@ We can use:
 
 Which provides the same result. 
 
-#### POSIX Basic Expression vs. Extended Expression
+## POSIX Basic Expression vs. Extended Expression
 
 POSIX splits regular expression implementations into two kinds:
 
@@ -163,4 +163,74 @@ All other characters are interpreted as literals. With ERE, on the other hand, t
 
 `( ) { } ? + |`
 
+However, the (, ), {, and } characters are seen as metacharacters within BRE **if** they are escaped using a backslash. In ERE, on the other hand, preceding the metacharacters with a backslash will cause them to be seen as a literal. 
+
+## Alternation
+
+Alternation is a capability that allows matching to take place from among a set of expressions. It allows for matches from a set of strings or other regular expressions. 
+
+```bash
+$ echo "AAA" | grep AAA
+AAA
+$ echo "BBB" | grep AAA
+$
+```
+
+Alternation can be signified by the vertical-bar metacharacter.
+Another example:
+
+```bash
+echo "AAA" | grep -E 'AAA|BBB'
+AAA
+echo "BBB" | grep -E 'AAA|BBB'
+BBB
+echo "CCC" | grep -E 'AAA|BBB'
+
+```
+
+Alternation can be used when there are multiple choices:
+
+```bash
+echo "AAA" | grep -E 'AAA|BBB|CCC'
+AAA
+```
+
+It's also possible to use alternation combined with other regular expression elements, using () to separate the alternation. 
+
+`grep -Eh '^(bz|gz|zip)' dirlist*.txt`
+
+Here, the expression will match with filenames that start with `bz`, `gz`, or `zip`. Without the parenthesis, the meaning of the regex changes to instead match any filename that begins with `bz`, or otherwise contains `gz` or `zip`. 
+
+`grep -Eh '^bz|gz|zip' dirlist*.txt`
+
+## Quantifiers
+
+Regular expressions support many different ways to show the number of times that an element is matched. 
+
+### ? - Matching an Element Zero or a Single Time
+
+This quantifier means to make the preceding element optional. For example, if we are wanting to check if a phone number if valid, and we would consider a number to be valid if it matched either of two forms, where *x* is the numeral:
+
+- *(xxx) xxx-xxx*
+- *xxx xxx-xxx*
+
+The regular expression would look like:
+
+`^\(?[0-9][0-9][0-9]\)? [0-9][0-9][0-9]-[0-9][0-9][0-9]$`
+
+The parenthesis characters are followed by ? marks to indicate that they must be matched zero or one time. Note that we precede the parentheses with backslashes so that they are treated as literals. 
+
+Let's use this expression to match a number: 
+
+```bash
+echo "(033) 502-1100" | grep -E '^\(?[0-9][0-9][0-9]
+\)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
+$ (033) 502-1100
+echo "033 502-1100" | grep -E '^\(?[0-9][0-9][0-9]\)
+? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
+$ 033 502-1100
+echo "AAA 502-1100" | grep -E '^\(?[0-9][0-9][0-9]\)
+? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
+$
+```
 

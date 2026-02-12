@@ -37,7 +37,7 @@ Notice that the `c` has been swapped for `x`.
 
 If the file is also zipped, use the following command:
 
-`tar -xvzf <archive.tar.gz`
+`tar -xvzf <archive.tar.gz>`
 
 Files that use the format `.tgz` are the same as `tar.gz` but they are not as common. 
 
@@ -54,10 +54,10 @@ These can be implemented in the following way:
 | Format | Tar flag | Speed | Size (Ratio) | Resource Usage | Use Case |
 | --- | --- | --- | --- | --- | --- |
 | .tar | (None) | Instant | None | Very low | Bundling files together |
-| .tar.gz | -z | Fast | Good | Low | Scripts, logs, everyday Linux usage. |
-| .tar.zst | --zstd | Very fast | Great | Moderate | Modern cloud backups |
-| .tar.xz | -J | Slowest | Best | High | Software distribution (Kernel) and long-term cold storage |
-| .tar.bz2 | -j | Slow | Great | Moderate | Legacy systems; largely being replaced |
+| .tar.gz | `-z` | Fast | Good | Low | Scripts, logs, everyday Linux usage. |
+| .tar.zst | `--zstd` | Very fast | Great | Moderate | Modern cloud backups |
+| .tar.xz | `-J` | Slowest | Best | High | Software distribution (Kernel) and long-term cold storage |
+| .tar.bz2 | `-j` | Slow | Great | Moderate | Legacy systems; largely being replaced |
 
 Zstd has become the standard in much of the modern DevOps and cloud world and is superior to other choices in virtually every metric. Use the following to create a `.tar.zst` compressed archive. 
 

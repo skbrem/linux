@@ -37,7 +37,7 @@ Notice that the `c` has been swapped for `x`.
 
 If the file is also zipped, use the following command:
 
-`tar -cvxf <archive.tar.gz`
+`tar -xvzf <archive.tar.gz`
 
 Files that use the format `.tgz` are the same as `tar.gz` but they are not as common. 
 

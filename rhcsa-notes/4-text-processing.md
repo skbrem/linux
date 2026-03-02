@@ -105,4 +105,21 @@ The multiplier * matches zero or more of the previous character. If you are look
 
 Finally, ? matches zero or one of the previous characters.
 
+### Extended Regular Expressions
+
+There are different sets of regular expressions, which can make them difficult to understand. For instance, there is a set of extended regular expressions, and these are not, by default, supported by `grep`. In order to use these with `grep`, the `-E` option will be needed. 
+
+- The + is used to indicate that a character should occur one or more times. 
+- The ? is used to indicate that a character should occur zero or one times.
+
+#### Significant Regular Expressions
+
+| Expression | Use Case |
+| --- | --- |
+| ^*text* | Matches with the line that starts with the specified text. |
+| *text*$ | Matches with the line that ends with the specified text. |
+| . | A wildcard that matches any single character. |
+| [abc] | Will match with a, b, or c. |
+| ? | An extended regular expression that matches with zero or one of the preceding characters. |
+| + Also an extended expression that matches one or more of the preceding characters. |
 

@@ -1,0 +1,2 @@
+- Set up RHEL 10 on the minilaptop using an ansible playbook in order to get a good grasp of ansible and how it works. 
+- 

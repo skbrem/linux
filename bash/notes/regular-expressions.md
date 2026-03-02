@@ -234,3 +234,20 @@ echo "AAA 502-1100" | grep -E '^\(?[0-9][0-9][0-9]\)
 $
 ```
 
+### * - Match an Element Zero or More times
+
+The * is used to denote an optional item, except that the item may appear any number of times instead of of only the once. For instance, if we wanted to see if a string was a sentence; in other words: to see if it contained an uppercase letter, contains a range of lowercase letters, and then eventually ends with a period. We could use something like the following:
+
+`^[[:upper:]][[:upper:][:lower:] ]*\.`
+
+There are three items in this expression.
+
+- A bracket that contains the upper character class: `[:upper:]`
+- An expression containing both `[:upper]` and `[:lower:]` classes and then a space
+- Finally, a it ends with a period that is escaped with a backslash. 
+
+It's trailed with a * so that after the first uppercase character, it will still match regardless of the number of uppercase and lowercase characters that follow. 
+
+```bash
+echo "Hello there." | grep -E '^[[:upper:]][[:upper:]][:lower:] ]*/.'
+```

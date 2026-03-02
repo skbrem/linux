@@ -109,8 +109,8 @@ Finally, ? matches zero or one of the previous characters.
 
 There are different sets of regular expressions, which can make them difficult to understand. For instance, there is a set of extended regular expressions, and these are not, by default, supported by `grep`. In order to use these with `grep`, the `-E` option will be needed. 
 
-- The + is used to indicate that a character should occur one or more times. 
-- The ? is used to indicate that a character should occur zero or one times.
+- The `+` is used to indicate that a character should occur one or more times. 
+- The `?` is used to indicate that a character should occur zero or one times.
 
 #### Significant Regular Expressions
 
@@ -122,4 +122,16 @@ There are different sets of regular expressions, which can make them difficult t
 | [abc] | Will match with a, b, or c. |
 | ? | An extended regular expression that matches with zero or one of the preceding characters. |
 | + Also an extended expression that matches one or more of the preceding characters. |
+
+## Using grep To Analyze Text
+
+A table of useful grep Description
+
+| Option | Usage |
+| --- | --- |
+| `-i` | Matches upper and lowercase letters. In other words, removes case sensitivity. |
+| `-v` | Shows the lines that don't contain the regex. |
+| `-r` | Searches for files within the current directory as well as all subdirectories. |
+| `-e` | Searches for lines that match more than one regular expression. Use `-e` before each regex that you want to use. |
+| -E | Uses extended regular expression. |
 

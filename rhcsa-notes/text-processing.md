@@ -135,3 +135,36 @@ A table of useful grep Description
 | `-e` | Searches for lines that match more than one regular expression. Use `-e` before each regex that you want to use. |
 | -E | Uses extended regular expression. |
 
+## Other Ways to Process Text
+
+`grep` is not the only utility that is able to process text. Two more are `awk` and `sed`. 
+
+Here's an example of using awk to show the third field in `/etc/passd`.
+
+```bash
+awk -F : '{ print $3 } /etc/passwd'
+```
+
+A similar thing can be done with `cut` but `awk` is more useful when trying to show the fields that are then used in command outputs from files.
+
+`awk` can also be used in place of grep sometimes, for example:
+
+```bash
+awk -F : '/user/ { print $3 }' /etc/passwd'
+```
+
+Here, the command looks through `/etc/passwd` for the text "user" and then prints the third field of any line that matches.
+
+Using the stream editor `sed`, it's possible to do something similar. For example:
+
+```bash
+sed -n 5p /etc/passwd
+```
+
+`sed` is especially useful for filtering text from a file, but unlike `grep`, `sed` can be used to modify the text. For example:
+
+```bash
+sed -i s/old/new/g ~/file
+```
+
+Here, we use `sed` to search for the *old* text and then replace all occurrences of this text with the *new* text within the file `~/file`. By default, `sed` writes to to STDOUT, but using the `-i` option will write the result directly to the chosen file.

@@ -121,4 +121,32 @@ When using `scp` to connect using the nondefault port number, the `-P` option mu
 
 Using `sftp` means opening an FTP client session to the remote host. The client session uses typical FTP commands, like `put` for uploading a file and `get` for downloading a file.
 
+Even when connected to a remote machine, it's important to remember that the user is still also working alongside the local directory. 
 
+## Using `rsync`
+
+`rsync` makes use of SSH in order to synchronise files between a local and a remote directory. Synchronising is different in that it only uploads the changes that are made rather than an entire file or directory. 
+
+### Common `rsync` options
+
+| Option | Function |
+| --- | --- |
+| `-r` | Synchronises a whole directory tree |
+| `-l` | Copies symbolic links as symbolic links |
+| `-p` | Preservers any permissions |
+| `-n` | Performs a dry run - nothing is synchronised |
+| `-a` | Uses **archive mode**, that makes sure the subdirectory tree and all the file properties will be synchronised properly |
+| `-A` | Uses archive mode and also Synchronises ACLs |
+
+
+## SSH Key-Based Authentication
+
+It's possible to use public key cryptography to generate a private and a public key. The public key can be handed over to other hosts, and when logging in with SSH, the public key will be matched against the private key. 
+
+### Passphrases
+
+Maximum security can be achieved by assigning a passphrase to a private key, but this also makes it more inconvenient. It's possible to bypass this but it's imperative to make sure the private key is as secure as possible, as anyone that gets a hold of the key will then be able to access any linked remote hosts.
+
+### Creating a key pair
+
+Use the `ssh-keygen` command. Then use the `ssh-copy-id` command to copy the public key to the target machine. 

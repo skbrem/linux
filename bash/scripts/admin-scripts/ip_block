@@ -1,0 +1,10 @@
+#!/bin/bash
+
+grep "Failed" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | while read COUNT IP; do
+
+if iptables -L -n | grep -q "$IP"; then
+    echo "$IP is already blocked. Skipping..."
+else
+    echo "New threat detected: Blocking $IP..."
+    sudo iptables -A INPUT -s "$IP" -j DROP
+fi

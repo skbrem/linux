@@ -29,9 +29,9 @@ This represents the following:
 2. `r--`
 3. `r--`
 
-The first set of permissions applies to the owner of the file. The second applies to the group that owns the file. The third set is referred to as 'others'. 
+The first set of permissions applies to the owner of the file. The second applies to the group that owns the file. The third set is referred to as 'others'.
 
-When permissions and users are represented by letters, that is called **symbolic mode**. 
+When permissions and users are represented by letters, that is called **symbolic mode**.
 
 - User: `u`
 - Group: `g`
@@ -42,14 +42,14 @@ When permissions and users are represented by letters, that is called **symbolic
 
 ## Octal Values
 
-When Linux permissions are represented by numbers, this is known as **numeric mode** or **absolute mode**. In numeric mode, a 3 digit value represents specific file permissions, known as octal values. The first is for owner permissions, the second for group permissions, and the third for others. 
+When Linux permissions are represented by numbers, this is known as **numeric mode** or **absolute mode**. In numeric mode, a 3 digit value represents specific file permissions, known as octal values. The first is for owner permissions, the second for group permissions, and the third for others.
 
 - r (read): 4
 - w (write): 2
 - x (execute): 1
 
 > [!tip]
->  In the permission value 744, the first digit corresponds to the user, the second to the group, and the third to others. Adding up the values of each classification allows you to find the file permissions. 
+>  In the permission value 744, the first digit corresponds to the user, the second to the group, and the third to others. Adding up the values of each classification allows you to find the file permissions.
 > 
 > - Owner: rwx = 4+2+1 = 7
 > - Group: r-- = 4+0+0 = 4

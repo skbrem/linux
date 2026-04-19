@@ -1,14 +1,13 @@
 #!/bin/bash
-
 set -euo pipefail
 
 if [ "$#" -ne 1 ]; then
-	echo "Usage: $0 <username>"
-	exit 1
+  echo "Usage: $0 <username>"
+  exit 1
 fi
 
-USERNAME="$1"
-TEMP_PASS=$(openssl rand -base64 12)
+USERNAME="$1"                        # The username added when running the command
+TEMP_PASS=$(openssl rand -base64 12) # A temp password automatically created for the new user
 
 # Creating a user with a home directory
 useradd -m -s /bin/bash $USERNAME

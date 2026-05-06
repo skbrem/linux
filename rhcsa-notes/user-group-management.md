@@ -59,4 +59,55 @@ Most graphical programs that require administrative access will use PolicyKit. I
 
 ## Creating & Management of User Accounts
 
+There are typically two types of users on a Linux system. The first are the normal users who need to work on the server, and will have their own password that they need in order to access the server and its resources. Secondly, there are system accounts that make use of server services.
+
+- **Username**: A unique name for every user. These are used to match a user to their unique password, which are stored in the /etc/shadow file. Linux does not allow spaces to be used in the username, and it's good practise to use lowercase letters for the username.
+- **Password**: All passwords on modern Linux systems are hashed and then stored in the /etc/shadow file.
+- **UID**: Every user is assigned a unique user ID, known as a UID. It's a numeric ID that is used to determine that the user is able to do. The UID 0 is reserved exclusively for the root. UIDs that go up to 999 are typically used for system accounts, while those from 1000 onward are for user accounts.
+- **GID**: Each user is a member of at least one group. This group is known as the primary group, and it plays an important role in how permissions are manaed. It's possible for users to members of more than one group, administered by the /etc/group file.
+- **Commend Field**: The commend field is used to add comments to user accounts, and is optional. It can be helpful to add information about a user account and why it was created.
+- **Directory**: The directory that a user is placed in when they log in, and is also known as the *home directory*. The home directory is where a user stores their personal files and their applications. For system accounts, this environment is where the service is able to keep files that are needed during operation.
+- **Shell**: The program started when a user successfullly connects to a server, and for most users this will be /bin/bash, which is the default shell on Linux. The shell for system users will be a shell such as /sbin/nlogin. The `/sbin/nologin` command is a command that denies access to users as a layer of protection against intruders attempting to gain access to a shell.
+
+Some user properties are kept in the /etc/passwd file, which another part is kept in the /etc/shadow file. Only the user root and any process that is running as root have access to the /etc/shadow file.
+
+- **Login name**: /etc/shadow does not contain UIDs, but usernames instead.
+- **Password**: What's needed to store passwords securely. An empty field means that there is no password that has been set and the user is unable to login. An exclamation mark at the start of the field means that the account is not permitted to log in.
+- **Days since last password change**: On Linux, this starts on January 1, 1970, and is also known as epoch.
+- **Days before password change**: Allows for a stricter password change policy. A user is unable to change back to their original password after making a change. By default this is set to a value of 0.
+- **Days after which password needs changing**: The field that contains how long a password is value for. By default it's set to 99,999.
+- **Days before password expiration where user is warned**: Used to give a warning to user to alert them that they will be forced to change their passowrd. The default is 7 days.
+- **Days beofore an account is disabled due to password expiration**: Used to enforce a password change. After the expirry has passed, the user will no longer be allowd to log in. Set in days but by default is not set.
+- **Days since January 1, 1970 that account has been disabled**: It's possible to set this field to disable on account on chosen date.
+
+### User Creation
+
+Creating users can be done in many different ways. One way is to edit the /etc/shadow config files with an editor by using the `vipw` command. A more common option is to use the `useradd` command. To remove users, the `userdel` command is used, and `userdel -r` removes the user as well as their environment.
+
+### Configuration files
+
+The `vipw` command allows for the editing of the /etc/passwed and the /etc/shadow files, where lines can be added in order to add a new user. Using this method is not recommended as making an error can make it impossible for anyone to log into the system.
+
+To modify the /etc/shadow file, `vipw -s` is used. To edit the /etc/group file, `vigr` is used.
+
+### `useradd`
+
+The most common utility for adding new users. For example, the command `useradd -m -u 1150 -G website,accounting fred` will create a user named fred who is a part of the account and website groups, and who has been assigned a UID of 1150, and has also been given a home account.
+
+### Home Directories
+
+All users are given a home directory, and it's where personal files are kept. When a home directory is created, the content of the "skeleton" directory is then copied to the new user's home directory. The skeleton directory is /etc/skl, and contains files that are copied over upon user creation. By default, the skeleton directory is mostly made up of configuration files that are used to determine how the environment for the user is set up.
+
+### Default Shell
+
+The default shell for most users is set to /bin/bash. System users on the other hand will default to /sbin/nologin. In order to change the default shell using `useradd` or `usermod`, the `-s` option is used. For example, `useradd steve -s /sbin/nologin` will ensure that the user steve is not able to log in.
+
+Modifying the properties for a user is done with the `usermod` tool. It's able to set properties in both /etc/shadow and /etc/passwd, as well as some other things. It's worth noting that it does not set passwords well. Instead, it's better to use the `passwd` command.
+
+### Config Files for User Management
+
+Certain default properties are assumed when working with tools like `useradd`. These values are set in the following config files:
+
+- /etc/login.defs
+- /etc/default/useradd
 

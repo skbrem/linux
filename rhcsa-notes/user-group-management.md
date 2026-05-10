@@ -111,3 +111,64 @@ Certain default properties are assumed when working with tools like `useradd`. T
 - /etc/login.defs
 - /etc/default/useradd
 
+Properties that are worth noting in the /etc/login.defs file include:
+
+- **MOTD_FILE**: This is used for the file that is the message of the day. Here, messages can be included that are shown to the user that has logged into the server.
+- **ENV_PATH**: DEfines the $PATH variable. This is a list of directories that are searched for files which are executable.
+- **PASS_MAX_DAYS, PASS_MIN_DAYS, PASS_WARN_AGE**: The default password expiration properties when a new user is created.
+- **UID_MIN**:  The first UID to use when a new user is created.
+- **CREATE_HOME**: Whether to create a home directory for new users or not.
+
+### Password Properties
+
+There are two commands that are used to change the properties of passwords for users:
+
+- `chage`
+- `passwd`
+
+The commands for straightforward. For instance, the following command:
+
+`passwd -n 30 -w 5 -x 60 fred`
+
+Will set the password for fred to a minimum period of 30 days, with 60 days set as the expiry, where fred will receive a warning 5 days before the expiry occurs.
+
+`chage` can also be used for many of the same functions that `passwd` provides. For example, the command:
+
+`chage -E 2026-12-31 fred` will have the account for the user fred expire at the end of December in 2026. Use the command `chage -l` in order to see password management settings. The `chage` command also provides the user with an interactive mode, which can be activated for `chage fred`, and from there fred would be able to make changes to properties.
+
+### User Environment Creation
+
+An environment is created when a user logs into the system. This environment will consist of some variables that will determine how things work for that user. For instance, the $PATH variable defines a list of directories that are searched a command is typed into the terminal.
+
+The following files determine the nature of the user environment:
+
+- **/etc/profile**: This is used for the default settings for all of the system's users that start a login shell.
+- **/etc/bashrc**: This is used to define for the defaults for all of the users that start a subshell.
+- **~/.profile**: The specific settings for one user that are appkied when they start a login shell.
+- **~/.bashrc**: The specific settings for one user that are applied when that user starts a subshell. 
+
+When a user logs in, all of the files are read in this specific order, and any variables and other configurations are applied as defined within these files. If a variable or configuration occurs in more than a single file, then the last one read is the variable that is put into effect.
+
+## Creating and Managing Group Accounts
+
+Every user on a system will need to be a part of at least one group.
+
+### Linux Groups
+
+There are two different kinds of groups within a Linux system. The first is a **primary group**. Every user must be a member of the primary group, and each user has only a single primary group. 
+
+When a user creates a new file, the user's primary group becomes the group owner of said file. Users are able to access all files their primary group has access to. The user's membership can be found and changed in /etc/passwd, but the group is stored within the /etc/group file.
+
+Users on the system are able to also be a part of one or more secondary groups. Secondary groups are important as they allow the user access to different files.
+
+### Creating Groups
+
+The group config file can be direcly altered by using the `vigr` command, or the `groupadd` command. 
+
+#### Using `vigr`
+
+When using the `vigr` command, an interface for the /etc/group config file is opened. The following fields can be found within this file:
+
+- **Group name**: The name of the group.
+- **Group password**: Contains the password for the group, but worth noting that this isnot really used anymore. It can be used for users that want to join the group on a temporary basis. The password for a group is kept within the /etc/shadow file.
+- **Group ID**:  

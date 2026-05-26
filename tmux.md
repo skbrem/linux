@@ -111,4 +111,8 @@ Toggle the last active window
 
 `Prefix |`
 
+Window action menu
 
+`Prefix <`
+
+## Panes

@@ -68,3 +68,47 @@ Move to previous session
 Move to next session
 
 `Prefix )`
+
+## Windows
+
+Start a new session with the name **testsession** and window name **testwindow**
+
+`tmux new -s testsession -n window`
+
+Create window 
+
+`Prefix c`
+
+Rename the current window
+
+`Prefix ,`
+
+Close the current window
+
+`Prefix &`
+
+List windows
+
+`Prefix w`
+
+Previous window
+
+`Prefix p`  
+
+I have this set to `Prefix h`
+
+Next window
+
+`Prefix n`
+
+I have this set to `prefix l`
+
+Select window by number
+
+`Prefix 0-9`
+
+Toggle the last active window
+
+`Prefix |`
+
+

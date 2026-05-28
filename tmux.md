@@ -1,4 +1,4 @@
-## Session
+## Sessions
 
 Start a new session
 
@@ -95,13 +95,13 @@ Previous window
 
 `Prefix p`  
 
-I have this set to `Prefix h`
+- I have this set to `Prefix h`
 
 Next window
 
 `Prefix n`
 
-I have this set to `prefix l`
+- I have this set to `prefix l`
 
 Select window by number
 

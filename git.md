@@ -143,5 +143,5 @@ tags:
 | Description | Command |
 | --- | --- |
 | Local git config | `.git/config` |
-| Global git config | `~/.gitconfig |
+| Global git config | `~/.gitconfig` |
 | List of files Git ignores | `.gitignore` |

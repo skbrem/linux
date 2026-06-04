@@ -171,4 +171,19 @@ When using the `vigr` command, an interface for the /etc/group config file is op
 
 - **Group name**: The name of the group.
 - **Group password**: Contains the password for the group, but worth noting that this isnot really used anymore. It can be used for users that want to join the group on a temporary basis. The password for a group is kept within the /etc/shadow file.
-- **Group ID**:  
+- **Group ID**: Contains a unique numeric group ID number.
+- **Members**: The names of users that are a member of this group but as a secondary group. This does not show users that are a member of this group when it's their primary group. 
+
+Although there is a `/etc/gshadow` file alongside `/etc/group`, it's not that commonly-used to store group passwords. It's possible to use this file to list administrators, which are users that are able to change passwords for group members. 
+
+#### `groupadd`
+
+Another way to create a new group is by using `groupadd`. Use the `groupadd` command followed by the name of the group that is going to be created. There are also some advanced options, such as using `-g` that allows the specification of a group ID when the group is being created. 
+
+### Group Properties
+
+The `groupmod` command is used to manage group properties. This command is used to change the name or the ID o fthe group, but does not allow for the addition of new members. It's not always a good idea to change any of these properties as it can affect any files that are owneed by the group. 
+
+To see the members of a group, use the `lid` command. For example, `lid -g friends` will display users that are in the friends group.
+
+---

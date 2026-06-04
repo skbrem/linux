@@ -57,3 +57,49 @@ This is a vim cheatsheet that I got from [vim.rtorr.com](vim.rtorr.com). All cre
 `Ctrl` + `f` - move screen down one page (move cursor to first line)  
 `Ctrl` + `d` - move cursor and screen down half a page  
 `Ctrl` + `u` - moved cursor and screen up half a page  
+
+## Editing
+
+`r` - replace single character  
+`R` - replace more than one character until `ESC` is pressed  
+`J` - join line below to the current one with space inbetween  
+`gJ` - join line below to the current one without space inbetween  
+`gwip` - reflow paragraph  
+`g~` - switch case up to motion  
+`gu` - change to lowercase up to motion  
+`gU` - change to uppercase up to motion  
+`cc` - change (replace) entire line  
+`c$` or `C` - change (replace) to the end of the line  
+`ciw` - change (replace) entire word  
+`cw` or `ce` - change (replace) to the end of the word  
+`s` - delete character and substitute text (same as `cl`)  
+`S` - delete line and substitute text (same as `cc`)  
+`xp` - transpose two letters (delete and paste)  
+`u` - undo  
+`U` - restore (undo) last changed line  
+`Ctrl` + `r` - redo  
+`.` - repeat last command  
+
+## Insert Mode
+
+`i` - insert before the cursor  
+`I` - insert at the beginning of the line  
+`a` - insert (append) after the cursor  
+`A` -  insert (append) at the end of the line  
+`o` - append (open) a new line below the current line  
+`O` - append (open) a new line above the current line  
+`ea` - insert (append) at the end of the word  
+`Ctrl` + `h` - delete the character before the cursor during insert mode  
+`Ctrl` + `w` - delete the word before the cursor during insert mode  
+`Ctrl` + `j` - add a line break at the cursor position during insert mode  
+`Ctrl` + `t` - indent (move right) line one shiftwidth during insert mode  
+`Ctrl` + `d` - de-indent (move left) line one shiftwidth during insert mode  
+`Ctrl` + n` - insert (auto-complete) next match before the cursor during insert mode  
+`Ctrl` + `p` - insert (auto-complete) previous match before the cursor during insert mode  
+`Ctrl` + `rx` - insert the contents of register x  
+`Ctrl` + `ox` - temporarily enter normal mode to issue one normal-mode command x  
+`Ese` or `Ctrl` + `c` - exit insert mode  
+
+## Visual Mode
+
+

@@ -94,7 +94,7 @@ This is a vim cheatsheet that I got from [vim.rtorr.com](vim.rtorr.com). All cre
 `Ctrl` + `j` - add a line break at the cursor position during insert mode  
 `Ctrl` + `t` - indent (move right) line one shiftwidth during insert mode  
 `Ctrl` + `d` - de-indent (move left) line one shiftwidth during insert mode  
-`Ctrl` + n` - insert (auto-complete) next match before the cursor during insert mode  
+`Ctrl` + `n` - insert (auto-complete) next match before the cursor during insert mode  
 `Ctrl` + `p` - insert (auto-complete) previous match before the cursor during insert mode  
 `Ctrl` + `rx` - insert the contents of register x  
 `Ctrl` + `ox` - temporarily enter normal mode to issue one normal-mode command x  

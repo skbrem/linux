@@ -51,7 +51,9 @@ There are many different ways that `chown` can be used. Some examples include:
 
 The `chgrp` command is used to change group ownership. Here is an example of changing the group ownership of the directory `/home/projects` to the friends group.
 
-`chgrp friends /home/projects`
+```sh
+chgrp friends /home/projects
+```
 
 To change group ownership recursively, use the `-R` argument with `chgrp`.
 
@@ -67,4 +69,8 @@ Changing the primary group can be done with the `newgrp` command, followed by th
 
 ### Read, Write, and Execute
 
-The main three basic permissions allow a user to **read**, **write**, and **execute** files. The effects of these permissions is different when applied to files versus directories. When applied to a file, the read permission gives a user the right to open a file for viewing. When applied to a directory, it allows the user to list the contents within that directory.
+The main three basic permissions allow a user to **read**, **write**, and **execute** files. The effects of these permissions is different when applied to files versus directories. When applied to a file, the read permission gives a user the right to open a file for viewing. When applied to a directory, it allows the user to list the contents within that directory. Worth noting that the read permission does not allow the user to read the files that are in the directory as the permissions system does not know inheritance, and read permissions on the file itself are necessary in order for the user to read it.
+
+To open a file to read will still mean that the user will need to have read as well as execute permissions for the directory that the file is in otherwise the file would not be viewable to start with.
+
+The write permission allows the user to modify the contents of that user.

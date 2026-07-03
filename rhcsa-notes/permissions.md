@@ -73,4 +73,20 @@ The main three basic permissions allow a user to **read**, **write**, and **exec
 
 To open a file to read will still mean that the user will need to have read as well as execute permissions for the directory that the file is in otherwise the file would not be viewable to start with.
 
-The write permission allows the user to modify the contents of that user.
+The write permission allows the user to modify the contents of a file, but it does not allow the user to create or delete a file, where the write permission o the directory is needed instead. To modify the permissions on a file, the user will need to be the owner or root. The write permission on a directory allows for the creation and remove of subdirectories.
+
+The execute permission is used to run a program file. It's also needed on a directory if the user wants to do anything within that directory. This permission is never set by default, which is a part of what makes Linux inherently resistant to viruses. Only the user owner and the root is able to apply execute permissions.
+
+Execute on a directory allows the user to `cd` into that directory. Without this permission, users are unable to enter into a directory. 
+
+The following table illustrates the different permissions for files and directories:
+
+| Permission | Files | Directories |
+| --- | --- | --- |
+| Read | View file content | List directory contents |
+| Write | Change file contents | Create, delete files and subdirectories |
+| Execute | Run program file | Change to directory |
+
+## Applying Read, Write, and Execute
+
+

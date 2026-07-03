@@ -59,6 +59,14 @@ These can be implemented in the following way:
 | .tar.xz | `-J` | Slowest | Best | High | Software distribution (Kernel) and long-term cold storage |
 | .tar.bz2 | `-j` | Slow | Great | Moderate | Legacy systems; largely being replaced |
 
-Zstd has become the standard in much of the modern DevOps and cloud world and is superior to other choices in virtually every metric. Use the following to create a `.tar.zst` compressed archive. 
+Zstd has become the standard in much of the modern computing world and is superior to other choices in virtually every metric. Use the following to create a `.tar.zst` compressed archive.
 
-`tar --zstd -cvf <name-of-archive.tar.zst>` 
+```bash
+tar --zstd -cvf <name-of-archive.tar.zst>
+```
+
+Try also adding `-$(date +%F)` to it.
+
+```sh
+tar --zstd -cvf backup-$(date +%F)
+```

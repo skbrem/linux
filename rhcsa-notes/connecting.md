@@ -117,17 +117,17 @@ Use the `-r` option to copy a whole subdirectory structure.
 
 When using `scp` to connect using the nondefault port number, the `-P` option must be used followed by the port number.
 
-## Using `sftp`
+### Using `sftp`
 
 Using `sftp` means opening an FTP client session to the remote host. The client session uses typical FTP commands, like `put` for uploading a file and `get` for downloading a file.
 
 Even when connected to a remote machine, it's important to remember that the user is still also working alongside the local directory. 
 
-## Using `rsync`
+### Using `rsync`
 
 `rsync` makes use of SSH in order to synchronise files between a local and a remote directory. Synchronising is different in that it only uploads the changes that are made rather than an entire file or directory. 
 
-### Common `rsync` options
+#### Common `rsync` options
 
 | Option | Function |
 | --- | --- |

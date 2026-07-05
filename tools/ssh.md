@@ -75,7 +75,7 @@ Using an SSH can be made much easier by using a password manager like KeePassXC 
 | --- | --- |
 | `ssh -L 8080:localhost:80 user@host` | Local port forwarding |
 | `ssh -R 8080:localhost:80 user@host` | Remote port forwarding |
-| `ssh -D 1080 user@host | SOCKS proxy` (dynamic) |
+| `ssh -D 1080 user@host` | SOCKS proxy` (dynamic) |
 | `ssh -N -L 8080:localhost:80 user@host` | Tunnel only (no shell) |
 | `ssh -f -N -L 8080:localhost:80 user@host` | Background tunnel |
 

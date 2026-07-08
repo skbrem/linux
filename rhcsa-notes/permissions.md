@@ -87,6 +87,98 @@ The following table illustrates the different permissions for files and director
 | Write | Change file contents | Create, delete files and subdirectories |
 | Execute | Run program file | Change to directory |
 
-## Applying Read, Write, and Execute
+### Applying Read, Write, and Execute
 
+Applying is done by using the `chmod` command. When using `chmod`, the user can set the permissions for user, group, and others. It's possible to use `chmod` in both relative mode or absolute mode. In absolute mode, 3 digits are used for setting permissions.
 
+### Numeric representation of permissions
+
+| Permission | Representation |
+| --- | --- |
+| Read | 4 |
+| Write | 2 |
+| Execute | 1 |
+
+Calculate the value needed for permissions using these numbers. For instance, to set the read, write, and execute for the user, read and write for the group, and only read for others, use this command:
+
+`chmod 764 <file>`
+
+All current permissions for the file will be replaced by these new permissions. If order to use `chmod` in relative mode, we switch away from numbers and instead use indicators.:
+
+- Specifiy whether the change will be for the (**u**) user, (**g**), group, (**o**) others, or for all (**a**).
+- Use an operator to add or remove permissions for the current mode.
+- At the end of the command, use, `r`, `w`, or `x` to choose the permission to change to.
+
+It's possible to omit the "for whom" part of the `chmod` command, or to remove permissions for everyone. The following will add the execute permission for all users:
+
+`chmod +x <file>`
+
+More complex commands can be strung together with `chmod`, for example:
+
+`chmod g+w, o-r <file>`
+
+This command will give write permission to the group while removing read permission for others. 
+
+It's worth knowing how recursively changing permissions works as well. Consider the following:
+
+1. Start a root shell and type `mkdir ~/files`.
+2. Use `cp/etc[a-e]* ~/files`. Ignore any warnings that are presented. 
+3. Use `ls -l ~/files/*` and see what permissions are given.
+4. Use `chmod -R a+x ~/files`.
+5. Type `ls -l ~/files/*`. All files have become executable as well.
+
+Setting so many files to be executable can lead to some serious security issues. To recursively change permissions, it's a good idea to use `X` rather than `x`. For instance, `chmod -R a+X files` is better.
+
+## Advanced Permissions
+
+Along with the basic permissions, it's also possible to use advanced permissions in Linux. There are three advanced permissions available:
+
+1. The set user ID (SUID) permission. This can be helpful in specific situations but it's overall better to avoid setting this permission as much as possible as it can cause security holes.
+2. Group ID (GUID) is the next advanced permission. Similar to SUID but based on groups. 
+3. Sticky bit. Useful for protecting a file against accidental deletion where multiple users have write permissions.
+
+### Table for SUID, GUID, and Sticky Bit
+
+| Permission | Numeric | Relative | Files | Directories |
+| --- | --- | --- | --- | --- |
+| SUID | 4 | u+s | User executes file with permission of owner | No use |
+| GUID | 2 | g+s | User executes file with permission of group owner | File created in dir get same group owner |
+| Sticky Bit | 1 | +t | No Use | Prevents users from deleting files from other users |
+
+## Default permissions with umask
+
+ACLs or umask are used to set the default permissions, but umask is the more common way of doing this. When a new file is created, it has a set of permissions that are automatically applied to it. A numeric value is used which is then subtracted from the max permissions that can be applied for a file or directory. The max that can be set for a file is 666, and the max for a directory is 777.
+
+A default `umask` setting of 022 means a permissions value of 644 for all new files and a permission value of 755 for all new directories. 
+
+### umask values and results
+
+| Value | Files | Directories |
+| --- | --- | --- |
+| 0 | Read and write | Everything |
+| 1 | Read and write | Read and write |
+| 2 | Read | Read and execute |
+| 3 | Read | Read |
+| 4 | Write | Write and execute |
+| 5 | Write | Write |
+| 6 | Nothing | Execute |
+
+There are two different ways to change the umask setting: for either all users or for individual users. In order to change the umask for all users, the umask setting needs to be checked when starting the shell environment as directed by `/etc/profile`. The correct way to do it is by creating a shell script with the name `umask.sh` in the `/etc/profile.d` directory and specifying the umask that should be used in the script. 
+
+An alternative to setting umask throughh `/etc/profile` and related files is to instead change the umask settings in a file with the name of `.profile`. This is created in the home directory of an individual user, meaning that any settings are applied only to that user.
+
+## Extended Attributes
+
+One way of securing the files on a server is by using attributes. Some of the most common attributes include the following:
+
+- **A**: Ensurse that the file access time of a file is not able to be modified. This is helpful for files that are accessed on a regular basis and which this regular access can cause performance issues as every time it's accessed this is written to the file's metadata.
+- **a**: Allows a file to be added to but not removed.
+- **c**: This attribute ensures that a file is compressed the first time that a compression engine becomes active - only available where volume-level compression is supported.
+- **D**: Ensures that any changes to a file are written to disk immediately instead of to the cache first. Good for important database files to make sure that there's no chance of them being lost.
+- **d**: Ensures the file is not backed up in backups where the `dump` tool is used.
+- **I**: Ensures that indexing for the directory is enabled.
+- **i**: This will make a file immutable. No changes can be made to the file at all, useful for files that need a bit of extra protection.
+- **s**: Overwrites the blocks where the file is stored with zeroes after that file has been deleted. This makes it almost impossible to recover this file once removed.
+- **u**: Saves undelete information. Allows a utility to be developed that works with info to salvage deleted files.
+
+The `chattr` command is used to apply attributes to a file. The command `chattr +s <file>` will apply the `s` attribute to a file. To remove an attribute from a file, use the same command; in this case: `chattr -s <file>` will remove the `s` attribute.

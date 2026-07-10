@@ -61,7 +61,7 @@ Some of the most common commands to do this include:
 | `modprobe` | Loads modules, including dependencies |
 | `modprobe -r` | Unload modules, and considers dependencies |
 
-The `/etc/modules-load.` directory can also be used to load modules. Here, files can be created to load modules automatically that have not been loaded by the system automatically. For default modules that need to always be loaded, there is a counterpart directory at `/usr/lib/modules-load.d`.
+The `/etc/modules-load.d` directory can also be used to load modules. Here, files can be created to load modules automatically that have not been loaded by the system automatically. For default modules that need to always be loaded, there is a counterpart directory at `/usr/lib/modules-load.d`.
 
 One of the best ways to figure out whether the module for a piece of hardware is not being loaded is by using the `lscpi` command. If no arguments are used, it shows all hardware devices that have been detected by the PCI bus. A useful argument is `-k`, which lists all of the modules that are used for PCI devices that were detected.
 
@@ -70,3 +70,7 @@ If there are PCI devices which have been found but no modules could be loaded, i
 ### Managing Kernel Module Parameters
 
 Sometimes it may be necessary to load modules with specific parameters. First, the correct parameter needs to be identified, and then it needs to be loaded manually by specifying the name of the parameter followed by the value that needs to be assigned. It's also possible to make this an automated process by creating a file inside `/etc/modprobe.d`, from which the module is loaded.
+
+## Upgrading the Kernel
+
+To upgrade the kernel on an RPM-bases system, use `dnf upgrade kernel`. For Debian-based systems, use `apt update && apt upgrade kernel`. 

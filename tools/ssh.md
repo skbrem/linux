@@ -101,3 +101,37 @@ Using an SSH can be made much easier by using a password manager like KeePassXC 
 | `-J jumphost` | Jump through host (ProxyJump) |
 | `-X` | Enable X11 forwarding |
 | `-A` | Enable agent fowarding |
+
+## Piping Commands
+
+Pipe commands from the local host to the remote host. For example, to see the uptime of the remote, use:
+
+```bash
+ssh user@remote "uptime"
+```
+
+## Mounting a Remote Server
+
+The tool `SSHFS` allows the user to mount a remote directory on a local host, essentially working like plugging in a USB.
+
+Start by creating a local folder: `mkdir -p ~/test_dir`
+
+```bash
+sshfs user@remote:/var/www/html ~/test_dir
+```
+
+This will mount the folder locally.
+
+### Unmounting
+
+Unmounting the folder is necessary once finished using it.
+
+```bash
+umount ~/test_dir
+```
+
+In case there are symlinks present in the directory:
+
+```bash
+sshfs user@remote:/var/www/html ~/test_dir -o follow_symlinks,reconnect
+```

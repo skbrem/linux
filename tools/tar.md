@@ -2,7 +2,9 @@
 
 ### Archiving a directory or single file
 
-`tar -cvf <name-of-archive.tar> /path/to/directory-or-file`
+```bash 
+tar -cvf <name-of-archive.tar> /path/to/directory-or-file
+```
 
 - `c`: **C**reates an archive
 - `v`: **V**erbose mode to provide information about the compression process within the terminal. 
@@ -12,7 +14,9 @@
 
 It's also possible to integrate the gzip utility in order to **compress** an archive so it uses less space on the disk. This is done using the `z` option within tar if using the Gzip tool for compression. 
 
-`tar -cvzf <name of archive.tar.gz> /path/to/directory-or-file`
+```bash
+tar -cvzf <name of archive.tar.gz> /path/to/directory-or-file
+```
 
 This will create a archived file with the `tar.gz` appended on the end to show that it has been both archived with tar and compressed with gzip. 
 
@@ -29,7 +33,9 @@ Note that `f` always needs to come at the end of the command.
 
 Extraction of an archive file is simple as it's a reverse of the original commands. 
 
-`tar -xvf <archive.tar`
+```bash
+tar -xvf <archive.tar
+```
 
 Notice that the `c` has been swapped for `x`. 
 
@@ -37,7 +43,9 @@ Notice that the `c` has been swapped for `x`.
 
 If the file is also zipped, use the following command:
 
-`tar -xvzf <archive.tar.gz>`
+```bash
+tar -xvzf <archive.tar.gz>
+```
 
 Files that use the format `.tgz` are the same as `tar.gz` but they are not as common. 
 
@@ -67,6 +75,6 @@ tar --zstd -cvf <name-of-archive.tar.zst>
 
 Try also adding `-$(date +%F)` to it.
 
-```sh
+```bash
 tar --zstd -cvf backup-$(date +%F)
 ```

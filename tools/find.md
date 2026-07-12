@@ -10,7 +10,7 @@ find / -name "File.txt" 2>dev/null
 find / -iname "*File*txt" 2>/dev/null
 ```
 
-- Use "iname" for case insensitive searches
+- Use `iname` for case insensitive searches
 
 ## Find everything
 
@@ -39,7 +39,7 @@ Use the `-type` option to find files by type, including:
 - regular files: `-f`
 - directory: `-d`
 - symlinks: `-l`
-- socket: `-s'
+- socket: `-s`
 
 It's possible to search for more than one type by separating the types of a comma:
 

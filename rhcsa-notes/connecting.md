@@ -2,7 +2,7 @@
 
 It's important to know the difference between a **console** and a **terminal**. 
 
-- A **console** is the environment that the user is viewing; in order words, it's what the user sees when looking at their computer's screen.
+- A **console** is the environment that the user is viewing; in other words, it's what the user sees when looking at their computer's screen.
 - A **terminal** is an environment that is opened on the console and provides access to a shell like Bash. The terminal is the command line environment that the user can then use to type desired commands.
 
 ### Logging Into Local Consoles
@@ -57,7 +57,9 @@ The difference between `halt` and `poweroff` is that `poweroff` talks to the pow
 
 If none of these commands successfully shutdown/reboot the computer, there is an emergency reset option. From a root shell, type the following:
 
-`echo b > proc/sysrq-trigger`
+```bash
+echo b > proc/sysrq-trigger
+```
 
 This will immediately reset the machine without saving any changes. This should only be used as a last resort.
 
@@ -77,7 +79,9 @@ When connecting to a server for the first time, a public key fingerprint is stor
 
 Sometimes if the sshd service has been deleted and reinstalled, the fingerprints will have been lost. A mismatch like this can be fixed by removing the key fingerprint in the known_hosts file on the client computer, which is easy to do with `sed`. 
 
-`sed -i -e '20d' ~/.ssh/known_hosts`.
+```bash
+sed -i -e '20d' ~/.ssh/known_hosts
+```
 
 This removes line 20 from the known_hosts file if this is the line that holds the mismatching key.
 
@@ -87,7 +91,9 @@ By default, SSH won't allow the user to start a graphical application from the s
 
 The way to allow the display of graphical displays by using the `-Y` option with `ssh`. For example: 
 
-`ssh -Y user@server`
+```bash
+ssh -Y user@server
+```
 
 ## Common SSH Command Options 
 
@@ -105,15 +111,21 @@ The `scp` can be used to transfer files between two systems, and `rsync` is used
 
 `scp` is similar to `cp` but has a few more options with working with remote hosts. To copy the `/etc/hosts` file from the first server to the second server's `/tmp` folder, the following command can be used: 
 
-`scp /etc/hosts second-server:/tmp`
+```bash
+scp /etc/hosts user@second-server:/tmp
+```
 
 In order to connect to the user root to copy the `/etc/passwd` file to the home directory of the local server:
 
-`scp root@second-server:/etc/passwd ~`
+```bash
+scp root@second-server:/etc/passwd ~
+```
 
 Use the `-r` option to copy a whole subdirectory structure. 
 
-`scp -r second-server:/etc/ /tmp`
+```bash
+scp -r user@second-server:/etc/ /tmp
+```
 
 When using `scp` to connect using the nondefault port number, the `-P` option must be used followed by the port number.
 

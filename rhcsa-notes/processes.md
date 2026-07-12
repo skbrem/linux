@@ -29,7 +29,7 @@ Another key combination is `Ctrl-D`, which then sends an End of Life (EOF) chara
 | `&` | Starts command in the background (use at the end of the command.) |
 | `Ctrl-Z` | Stops the job temporarily so it can be managed. |
 | `Ctrl-D` | Sends the EOF character to the current job to indicate it should stop waiting for input. |
-| `Ctrl-C` | Used to cancel the current interative job. |
+| `Ctrl-C` | Used to cancel the current interactive job. |
 | `bg` | Jobs paused with `Ctrl-Z` will be moved to the background. |
 | `fg` | Brings the last job to the foreground. |
 | `jobs` | Shows which jobs are currently running from this shell. |

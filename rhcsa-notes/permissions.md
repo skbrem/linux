@@ -10,27 +10,27 @@ The user, group, and other owners are shown for a file when using the `ls -l` co
 
 While the `ls` command can provide ownership details for a specific directory, it can be helpful to get a list of all the files on a system that are owned by a user. This can be done with the `find` command and the `-user` argument. For example: 
 
-```sh
+```bash
 find / -user fred
 ```
 
 It's also possible to use `find` to look for files that have a specific group as their owner. The following command will search for files that are owned by the group **friends**:
 
-```sh
-find / -group users
+```bash
+find / -group friends
 ```
 
 ### Changing User Ownership
 
 When wanting to apply permissions, the first consideration should be ownership. The `chown` command is used for changing ownership. This is the syntax of the `chown` commmand:
 
-```sh
+```bash
 chown who what
 ```
 
 For example, the following command changes ownership for the file **todo** to the user fred:
 
-```sh
+```bash
 chown fred todo
 ```
 
@@ -38,7 +38,7 @@ chown fred todo
 
 There are two ways to change group ownership, with one being `chown`, or by using the command designed to do it, which is `chgrp`. When using the `chown` command, make sure to add `.` or `:` in front of the name of the group. The following command will change the group owner of the folder `/home/projects` to the group **friends**:
 
-```sh
+```bash
 chown .friends /home/projects
 ```
 There are many different ways that `chown` can be used. Some examples include:
@@ -51,7 +51,7 @@ There are many different ways that `chown` can be used. Some examples include:
 
 The `chgrp` command is used to change group ownership. Here is an example of changing the group ownership of the directory `/home/projects` to the friends group.
 
-```sh
+```bash
 chgrp friends /home/projects
 ```
 
@@ -101,7 +101,9 @@ Applying is done by using the `chmod` command. When using `chmod`, the user can 
 
 Calculate the value needed for permissions using these numbers. For instance, to set the read, write, and execute for the user, read and write for the group, and only read for others, use this command:
 
-`chmod 764 <file>`
+```bash
+chmod 764 <file>
+```
 
 All current permissions for the file will be replaced by these new permissions. If order to use `chmod` in relative mode, we switch away from numbers and instead use indicators.:
 
@@ -111,11 +113,15 @@ All current permissions for the file will be replaced by these new permissions. 
 
 It's possible to omit the "for whom" part of the `chmod` command, or to remove permissions for everyone. The following will add the execute permission for all users:
 
-`chmod +x <file>`
+```bash
+chmod +x <file>
+```
 
 More complex commands can be strung together with `chmod`, for example:
 
-`chmod g+w, o-r <file>`
+```bash
+chmod g+w, o-r <file>
+```
 
 This command will give write permission to the group while removing read permission for others. 
 

@@ -1,6 +1,6 @@
 ## Systemd
 
-The Systemd system and service manager is needed to start up modern Linux, using things called **units**. Units are made up of many different things, and one of the most import unit types is the service. These are usually processes that provide functionality and allow connections from external clients coming, with the SSH service being an example. In order to see a list of all of the available unit types, use this command:
+The Systemd system and service manager is needed to start up modern Linux, using things called **units**. Units are made up of many different things, and one of the most important unit types is the service. These are usually processes that provide functionality and allow connections from external clients coming, with the SSH service being an example. In order to see a list of all of the available unit types, use this command:
 
 ```sh
 systemctl -t help
@@ -21,6 +21,23 @@ If a unit file happens to exist in more than one of these locations at the same 
 The most important type of unit is the service unit, which is used to start processes. Service units can be used to start any kind of process, including commands and daemon processes. Service units usually consist of the following format:
 
 - [Unit]: This is a description of the unit and any of its dependencies. It also contains the **After** statement as well as the optional **Before** statement. These statements are used to define the dependencies between the different units, and how they relate to the perspective of this unit in particular. The Before statement indicates that the unit should be started before the unit that has been specified. The After statement indicates that this unit should be started after the unit that has been specified.
-- [Service]: 
+- [Service]: This describes how to start and stop the service and request status. Normally there is an **ExecStart** line, which shows how the to start the unit, and then there is also **ExecStop** that shows how to stop the unit. There is also a **Type** option available, which shows how the unit should be started. The **forking** type is used by daemon processes, but there are other types that can be viewed as well. In order to see more details about this, use `man 5 systemd.service`.
+- [Install]: Shows in which target this unit should be started in. Units that are missing the [Install] section are unable to be started automatically.
+
+### Systemd Mount Units
+
+Mount units control how a filesystem can be mounted to a particular directory. Mount units are an alternative for mounting filesystems through `/etc/fstab`.
+
+### Systemd Socket Units
+
+A socket creates a way for applications to talk to one another. Sockets can be defined as files but also as ports that systemd will be listening on for incoming connections. This allows a service to automatically start up when connection is coming in on a specified port, rather than having that service running all the time. Every socket requires a corresponding service file.
+
+### Systemd Target Units
+
+Unit files are used to build the functionality needed by the server, and in order to load them in the correct order and at the right time, a specific type of unit is needed: the target unit. A target unit is a group of units, and some are used to define the state the the server is meant to be in. 
+
+Other target units are groups of services that make it easier to manage not just single units on their own, but also all the units that are required to get specific functionality. For example, the `sound.target` is used to start or stop all units that are required to enable the sound on a system.
+
+Targets can sometimes have dependencies on other targets, which are defined by the target unit. One such example is the `basic.target`, which defines all of the units that should always be started. Use the command `systemd list-dependencies` to show an overview of all of the dependncies. 
 
 

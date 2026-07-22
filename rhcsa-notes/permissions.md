@@ -10,7 +10,7 @@ The user, group, and other owners are shown for a file when using the `ls -l` co
 
 While the `ls` command can provide ownership details for a specific directory, it can be helpful to get a list of all the files on a system that are owned by a user. This can be done with the `find` command and the `-user` argument. For example: 
 
-```bash
+```sh
 find / -user fred
 ```
 

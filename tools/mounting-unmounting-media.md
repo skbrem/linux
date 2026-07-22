@@ -4,10 +4,10 @@ It's relatively simple to mount and unmount devices that are plugged into a Linu
 
 For a USB or SSD device, `lsblk` will list something like:
 
-- `sda`: This is the physical device
-    - `sda1`: This is the partition on the device. This is what we want to mount
-- `sdb`
-    - `sdb1`
+- **sda**: This is the physical device
+    - **sda1**: This is the partition on the device. This is what we want to mount
+- **sdb**: ^^
+    - **sdb1**: ^^
 
 ## Create the Mount Point
 
@@ -59,7 +59,7 @@ If `umount` fails to unmount the device because it's busy, there is a terminal w
 
 ## Mounting Encrypted Drives
 
-If a device is encrypted with LUKS, the locked partition will first need to be found, and then a mapped virtual device is created. It's this virtual device that is then mounted. Start with `lsblk`. If that does not show the encrypted volume, instead use `lsblk -f`. Under the `TYPE colum, `crypto_LUKS` will be shown for the encrypted volume. 
+If a device is encrypted with LUKS, the locked partition will first need to be found, and then a mapped virtual device is created. It's this virtual device that is then mounted. Start with `lsblk`. If that does not show the encrypted volume, instead use `lsblk -f`. Under the `TYPE column`, `crypto_LUKS` will be shown for the encrypted volume. 
 
 ### Unlock The LUKS Container
 

@@ -65,13 +65,13 @@ There are typically two types of users on a Linux system. The first are the norm
 - **Password**: All passwords on modern Linux systems are hashed and then stored in the /etc/shadow file.
 - **UID**: Every user is assigned a unique user ID, known as a UID. It's a numeric ID that is used to determine that the user is able to do. The UID 0 is reserved exclusively for the root. UIDs that go up to 999 are typically used for system accounts, while those from 1000 onward are for user accounts.
 - **GID**: Each user is a member of at least one group. This group is known as the primary group, and it plays an important role in how permissions are manaed. It's possible for users to members of more than one group, administered by the /etc/group file.
-- **Commend Field**: The commend field is used to add comments to user accounts, and is optional. It can be helpful to add information about a user account and why it was created.
+- **Comment Field**: The comment field is used to add comments to user accounts, and is optional. It can be helpful to add information about a user account and why it was created.
 - **Directory**: The directory that a user is placed in when they log in, and is also known as the *home directory*. The home directory is where a user stores their personal files and their applications. For system accounts, this environment is where the service is able to keep files that are needed during operation.
 - **Shell**: The program started when a user successfullly connects to a server, and for most users this will be /bin/bash, which is the default shell on Linux. The shell for system users will be a shell such as /sbin/nlogin. The `/sbin/nologin` command is a command that denies access to users as a layer of protection against intruders attempting to gain access to a shell.
 
-Some user properties are kept in the /etc/passwd file, which another part is kept in the /etc/shadow file. Only the user root and any process that is running as root have access to the /etc/shadow file.
+Some user properties are kept in the `/etc/passwd` file, which another part is kept in the `/etc/shadow` file. Only the user root and any process that is running as root have access to the `/etc/shadow` file.
 
-- **Login name**: /etc/shadow does not contain UIDs, but usernames instead.
+- **Login name**: `/etc/shadow` does not contain UIDs, but usernames instead.
 - **Password**: What's needed to store passwords securely. An empty field means that there is no password that has been set and the user is unable to login. An exclamation mark at the start of the field means that the account is not permitted to log in.
 - **Days since last password change**: On Linux, this starts on January 1, 1970, and is also known as epoch.
 - **Days before password change**: Allows for a stricter password change policy. A user is unable to change back to their original password after making a change. By default this is set to a value of 0.

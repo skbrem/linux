@@ -140,3 +140,5 @@ When installed, `tuned` will automatically select a profile based on the system,
 `tuned-adm active` shows which profile is currently in use.
 `tuned-adm recommend` shows which profile `tuned` recommends.
 `tuned-adm powersave` will switch the profile to `powersave`.
+
+

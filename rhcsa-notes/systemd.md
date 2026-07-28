@@ -40,4 +40,12 @@ Other target units are groups of services that make it easier to manage not just
 
 Targets can sometimes have dependencies on other targets, which are defined by the target unit. One such example is the `basic.target`, which defines all of the units that should always be started. Use the command `systemd list-dependencies` to show an overview of all of the dependncies. 
 
+A target unit does not contain any information about the units that it is starting, but rather defines what is required and which services and targets that cannot be run at the same time. On top of that, it also defines that load ordering by using the **After** statement that is found in the [Unit] section. The target file also does not have any information about the units that should be included. This is instead defined in the [Install] section of the different unit files.
 
+When the `systemctl enable` command is used, the [Install] section is considered in order to determine to which target the unit should be added, and it makes sure that the unit is automatically started when booting the machine. 
+
+When adding a unit to a target, there is a symlink that is created in the target directory in `/etc/systemd/system`. In Systemd, a symlink is known as a **want**, and it defines what the target wants to start when it is being processed.
+
+## Managing Units
+
+Managing units does not just mean managing their current working state, but also changing specific options used by the various units. 

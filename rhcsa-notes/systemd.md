@@ -48,4 +48,32 @@ When adding a unit to a target, there is a symlink that is created in the target
 
 ## Managing Units
 
-Managing units does not just mean managing their current working state, but also changing specific options used by the various units. 
+Managing units does not just mean managing their current working state, but also changing specific options used by the various units. Managing units begins by learning how to stop and start them properly, and this is done with the `systemctl` command. To learn more about a running service, use the `systemctl status <service>` command. Here's a table that describes what the different statuses are.
+
+| Status | Description |
+| --- | --- |
+| Loaded | The unit is active. |
+| Active (running) | The unit is running. |
+| Active (exited) | The unit has completed a one-time run. |
+| Active (waiting) | The unit is running and waiting for an event. |
+| Inactive (dead) | The unit is not running. |
+| Enabled | The unit will be started at boot time. |
+| Disabled | The unit will not be started at boot time. |
+
+The following table contains commond `systemctl` commands that are used in everyday administration.
+
+| Command | Description |
+| `systemctl -t service` | Displays only the service units. |
+| `systemctl list-units -t service | Does the same as the previous command. |
+| `systemctl list-units -t service -all` | Shows both active and inactive services. |
+| `systemctl --failed -t service | Shows any services that have failed. |
+| `systemctl status -l the.service | Provides detailed info about "the.service". |
+
+### Dependencies
+
+There are two ways of managing dependencies:
+
+- The unit types, including socket, timer, and path are directly related to a service unit. Systemd is able to make the connection because the first part of the name is the same, for instance: `borgbackup.timer` works with `borgbackup.service`. Working with either will automatically trigger the service type.
+- Dependencies can be defined in the unit itself with keywords like `Requires`, `Requisite`, `After`, and `Before`. 
+
+

@@ -76,4 +76,18 @@ There are two ways of managing dependencies:
 - The unit types, including socket, timer, and path are directly related to a service unit. Systemd is able to make the connection because the first part of the name is the same, for instance: `borgbackup.timer` works with `borgbackup.service`. Working with either will automatically trigger the service type.
 - Dependencies can be defined in the unit itself with keywords like `Requires`, `Requisite`, `After`, and `Before`. 
 
+It's possible to see a list of dependencies with the command `systemctl list-dependencies` followed by a unit name to find the dependencies that the unit has. Adding `--reverse` to it to find out which units are required for this unit to started.
 
+To make sure that dependencies are managed correctly, there are some keywords that can be added to the [Unit] section.
+
+- **Requires**: If the unit loads, all the units that are listed here will also load. If one of the other units is turned off, then this unit will also be turned off.
+- **Requisite**: If the unit that is listed here is not loaded already, then the unit will fail.
+- **Wants**: This unit wants to load the units that have been listed here, but if any of them are missing, then the the unit will not fail.
+- **Before**: This unit will start before the unit that is defined as **Before**.
+- **After**: This unit will start after the unit that is defined as **After**.
+
+### Unit Options
+
+Unit files in Systemd have a lot of different options and it's not difficult to become overwhelmed by them all. The `systemctl show` command can be used to see all the different options that can be used with a unit, such as the `systemctl show sshd` command, which provides all of the options that are able to be configured in the sshd.service unit. 
+
+When altering unit files in order to apply certain options, the changes will need to be made to `/etc/systemd/system`, which is where custom unit files should be made. 

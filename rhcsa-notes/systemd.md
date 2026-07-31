@@ -63,11 +63,12 @@ Managing units does not just mean managing their current working state, but also
 The following table contains commond `systemctl` commands that are used in everyday administration.
 
 | Command | Description |
+| --- | --- |
 | `systemctl -t service` | Displays only the service units. |
-| `systemctl list-units -t service | Does the same as the previous command. |
+| `systemctl list-units -t service` | Does the same as the previous command. |
 | `systemctl list-units -t service -all` | Shows both active and inactive services. |
-| `systemctl --failed -t service | Shows any services that have failed. |
-| `systemctl status -l the.service | Provides detailed info about "the.service". |
+| `systemctl --failed -t service` | Shows any services that have failed. |
+| `systemctl status -l the.service` | Provides detailed info about "the.service". |
 
 ### Dependencies
 
@@ -90,4 +91,4 @@ To make sure that dependencies are managed correctly, there are some keywords th
 
 Unit files in Systemd have a lot of different options and it's not difficult to become overwhelmed by them all. The `systemctl show` command can be used to see all the different options that can be used with a unit, such as the `systemctl show sshd` command, which provides all of the options that are able to be configured in the sshd.service unit. 
 
-When altering unit files in order to apply certain options, the changes will need to be made to `/etc/systemd/system`, which is where custom unit files should be made. 
+When altering unit files in order to apply certain options, the changes will need to be made to `/etc/systemd/system`, which is where custom unit files should be made. The recommended way to do this is with the `systemctl edit` command, which creates a subdirectory in `etc/systemd/system` for a service that is going to be edited. For instance, if we use the command `systemctl edit sshd.service`, a directory with the name `/etc/systemd/systemd/sshd.service.d` where a file with the name of `override.conf` is created and placed. Any configuration changes that are made to this file will then automatically override any existing settings that are in the file `/usr/lib/systemd/system`.

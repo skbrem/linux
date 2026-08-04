@@ -109,4 +109,8 @@ By default, all users on a system are able to start cron jobs, but it's also pos
 
 ## `at`
 
+The `atd` service is used to execute tasks only once as opposed to cron which is meant to be on a reoccuring basis. In order to schedule a once-off job, we use the `at` command, followed by the time that we want the job to be done. This could be a specific time, such as `at 13:00`, but it can also be descriptive, such as `at noon`. Once the command has been typed, the `at` shell opens, and here it's possible to type several more commands that will be executed at the time that has been specified. Once the commands have been added, type `Ctrl-D` to exit the `at` shell.
 
+After the jobs have been scheduled, use the `atq` command to get an overview of all the jobs that are in the queue. It's also possible to remove any currently queued jobs, which is done with the `atrm` command, and optionally the time of the job can be specified. 
+
+A similar command is `batch`, but it's more complicated. When using `batch`, it's possible to specify that a job is started only when specific system performance parameters allow it. Usually this means when the system load is below 0.8. This is a low value on modern systems, but it's possible to modify this value when using `atd`, using the `-l` option. For example, the `atd -l 3.0` to make sure that the no batch job is started when the load is above 3.0.

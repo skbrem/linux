@@ -2,7 +2,11 @@ GPG has been around for a long time, but it's not as secure as it should be, it'
 
 ## Signing Files
 
-First, start by creating or choosing a file. In this case it'll be called `file.txt`: `touch file.txt`.
+First, start by creating or choosing a file. In this case it'll be called `file.txt`:
+
+```sh
+touch file.txt
+```
 
 Then we need to sign this document using SSH keys:
 
@@ -30,5 +34,5 @@ name@email.com ssh-ed25519 AAAAC3Nz...
 We'll call this file `allowed_signers`, and point to it with with the `-f allowed_signers` option, as is shown in the above command.
 
 - `-I name@email.com`: This is the identity that we are checking against.
-- `s file.txt.sig`: Stands for **signature**, and we are telling SSH where this file is.
+- `-s file.txt.sig`: Stands for **signature**, and we are telling SSH where this file is.
 - `< file.txt`: We use the redirect operator here so that we can push the contents of the `file.txt` file back to `file.txt.sig` in order calculate and compare the hashes.

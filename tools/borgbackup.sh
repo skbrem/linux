@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ---------------
-# Backs up the home directory directly to a remote server using BorgBackup.
+# Backs up the home directory directly to a remote server with BorgBackup.
 # ---------------
 
 set -euo pipefail

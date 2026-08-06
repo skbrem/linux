@@ -1,7 +1,7 @@
 ## Finding single file by name
 
 ```bash
-find / -name "File.txt" 2>dev/null
+find / -name "File.txt" 2>/dev/null
 ```
 
 ## Find single file by approximate name
@@ -80,5 +80,5 @@ The `-` conditional ensures that find will search for files that have been modif
 To search in a path string, use the `-ipath` option, which ensures that ignores regex characters. 
 
 ```bash
-find / -type d -name 'img' -path "*old_projects/examples*" 2>dev/null
+find / -type d -name 'img' -path "*old_projects/examples*" 2>/dev/null
 ```

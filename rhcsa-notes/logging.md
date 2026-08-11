@@ -59,4 +59,45 @@ One way to watch a log as it's being written to is by using the `tail -f <logfil
 
 ### Logger
 
-The `logger` command enables users to write messages to rsyslog from the command line or from a script. Start by typing in `logger` followed by the message that needs to be written to the logs. 
+The `logger` command enables users to write messages to rsyslog from the command line or from a script. Start by typing in `logger` followed by the message that needs to be written to the logs. It's also possible to choose the priority and the utility to log messages to. For instance, the command `logger -p kern.err hello` will write "hello" to the kernel facility, and will use the error priority.
+
+## Systemd-journald
+
+The journal is a binary file that is stored temporarily in the file `/run/log/journal`. It's possible to examine this file by using the `journalctl` command.
+
+### `journalctl`
+
+When using the `journalctl` command without arguments, it will show recent events that have been written to the journal since the server started. The result of this command is shown in the `less` pager, and by default it shows the beginning of the journal. In order to see the last messages that were logged, use the `journalctl -f` command instead, and use uppercase **G** in order to go to the end of the journal. 
+
+One option is to use `journalctl -o verbose`, which provides detailed information about all items that have been logged, including the PID, ID of all associated users and group accounts, the associated commands, and more.
+
+More arguments can be used with `journcalctl` For instance, including `-b` shows a boot log, including messages that were generated during the boot procedure. The `-x` option adds explanations to the information that is provided, making to interpret specific messages. Another option is the `-u` option, which allows the admin to view messages that were logged for a specific systemd unit, for instance, `journalctl -u sshd`. The following table contains information about the more commonly-used `journalctl` options:
+
+| Option | Description |
+| --- | --- |
+| `-f` | Shows bottom of journal and adds new messages generated live |
+| `-b` | Displays the boot log |
+| `-x` | Adds additional explanations to the logged items |
+| `-u` | Used to filter log messages for a specific unit |
+| `-p` | Filters for messages with a specific priority |
+
+By default, the journal is stored in `/run/log/journal`, and the entire `/run` directory is used for current process status information, meaning that it is cleared when the system reboots. In order to ensure that the journal persists across boots, it's worth creating the directory `/var/log/journal`. 
+
+Along with this, it's also necessary to change the `Storage=auto` parameter in `/etc/systemd/journald.conf`, which is usually set by default. There are different values that can be assigned to this parameter:
+
+- `Storage=auto`: The journal will write to disk only if `/var/log/journal` exists.
+- `Storage=volatile`: The journal is stored only in the `/run/log/journal` directory.
+- `Storage=persistent`: The journal is stored on the disk in the directory `/var/log/journal`. If the directory doesn't already exist, it will be created automatically.
+- `Storage=none`: No data is stored, but it's possible to forward to other targets including the syslog or kernel buffer.
+
+Even when there is a persistent write to the file in `/var/log/journal`, the logs will not remain forever because the journal as log rotation built in by default and is activated monthly. Along with this, the journal is limited to a maximum size of 10% of the size of the file system, and will not grow if there is less than 15% of the file system remaining. When this occurs, the oldest messages are automatically deleted in order to make room for new messages. It's easy enough to change the retention times by making modifications to the `/etc/systemd/journald.conf` file.
+
+## rsyslogd
+
+It's possible to configure the rsyslogd service by modifying the `/etc/rsyslog.conf` file, along with optional drop-in files in `/etc/rsyslog.d`. The `/etc/rsyslog.conf` file is where the main configuration is found, but it's not the only file where the config can be changed. For instance, further settings can be found in `/etc/rsyslog.d`.
+
+The `rsyslog.conf` file is used to specify what is meant to be logged and where. There are different sections within this file, including:
+
+- #### MODULES ####: Modules are included to increase the supported featureset for rsyslog.
+- #### GLOBAL DIRECTIVES ####: Used to specify global parameters, such as the location where auxilliary files are written or the default timestamp format.
+- #### RULES ####: 

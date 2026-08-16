@@ -56,7 +56,7 @@ First, we need to specify the name of the disk device to use as an argument, whi
 | Device | Description |
 | --- | --- |
 | `/dev/sda` | A disk that uses the SCSI driver. Used for both SCSI and SATA. |
-| `/dev/nvmn1` | The first drive on the NVM express interface. |
+| `/dev/nvmen1` | The first drive on the NVM express interface. |
 | `/dev/hda` | Legacy IDE device type. |
 | `/dev/vda` | Common disk drive for KVM virtual machines. |
 | `/dev/xvda` | Disk in the Xen virtual macine that uses the Xen disk driver. |

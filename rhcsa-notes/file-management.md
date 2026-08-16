@@ -97,9 +97,7 @@ Linux works with directories in order to organise files. It's important to be ab
 
 > [!note]
 > - **Absolute path**: Also known as an absolute pathnames/filenames, this is the complete path reference to a directory or file. It begins at the root directory, and will include all the subdirectories leading up to the current working directory or filename. 
-
-> [!note]
-> - **Relative path**: This is relative to the current directory, shown with the `pwd` command. Possible to get from the current directory up to the file that's needed. 
+:x
 
 When working with relative pathways, it's helpful to be able to move up one level from where you are. Let's take the example of being logged in as root and wanting to copy the file /home/steve/file.txt to the directory /home/john. The following solutions will allow you to do this:
 

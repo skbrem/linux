@@ -71,9 +71,9 @@ If more than 4 separate allocation units are needed, consider using LVM instead.
 
 ## GPT Partitions with `gdisk`
 
-The disks that are larger than 2 TiB, or those that have already been configured with GPT, it's best to use the `gdisk` utility. It is very similar to `fdisk`, but with a few differences. For starters, it's only possible to decide on a partition type when initialising a new disk. Note tha tonce MBR or GPT has been created, we can't cchange the type. While `gdisk` is the preferred utility for GPT partitions, `fdisk` can also initialise GPT with the `g` command. 
+For disks that are larger than 2 TiB, or those that have already been configured with GPT, it's best to use the `gdisk` utility. It is very similar to `fdisk`, but with a few differences. For starters, it's only possible to decide on a partition type when initialising a new disk. Note that once MBR or GPT has been created, we can't change the type. While `gdisk` is the preferred utility for GPT partitions, `fdisk` can also initialise GPT with the `g` command. 
 
-Don't ever use `gdisk` on a partition that was initially formatted with `fdisk`. `gdisk` will convert this partition to GPT automatically, and if this was originally an MBR partition, this will now allow the computer to boot.
+Don't ever use `gdisk` on a partition that was initially formatted with `fdisk`. `gdisk` will convert this partition to GPT automatically, and if this was originally an MBR partition, this will not allow the computer to boot.
 
 Another option for working with partitions is the `parted` utility, but this lacks the advanced features found in `fdisk` and `gdisk`. 
 

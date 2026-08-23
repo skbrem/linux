@@ -148,6 +148,7 @@ sudo mount /dev/sda1 /mnt
 Disconnecting the mounted file system could be done either with `umount /dev/sda` or `umount /mnt`.
 
 ### Device Names, UUIDs, Disk Labels
+
 Using `/dev/sda1` may not always be ideal as the path/name may change after a reboot. To address this, we can instead rely on **universally unique IDs (UUIDs)**. Every file system has a UUID associated with it. Use the `blkid` command to get an overview of the current file systems on the machine and associated UUIDs.
 
 Before UUIDs file systems often worked with labels. These can be set with `e2label`, `xfs_admin -L`, or `mkfs.xxxx -L` commands. Using labels has become uncommon in recent versions of Linux.
@@ -167,7 +168,7 @@ The classical way to automatically mount a file system is by altering the `/etc/
 | Field | Description |
 | --- | --- |
 | Device | The device being mounted. Use device name, UUID, or label |
-| Mount Point | Te directory or kernel interface where the device is mounted |
+| Mount Point | The directory or kernel interface where the device is mounted |
 | File System | The type of file system |
 | Dump Support | Use 1 to enable to support for `dump` utility |
 | Automatic Check | Specifies whether the FS should be checked when booting. 0=Disabled, 1=Check root FS, 2=Check other files systems |

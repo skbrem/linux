@@ -60,14 +60,14 @@ When creating a logical volume, a volume name and size must be chosen. The size 
 The volume group must be specified, and we use the `-n` option to choose a name for the logical volume. For example:
 
 ```bash
-lv create -n lvvolme -l 100 vgvolume
+lvcreate -n lvvolme -l 100 vgvolume
 ```
 
 This command will create a logical volume with the name **lvvvolme** and a size of 100 extents, which will be added to the **vgvolume**. Once created, we can use the `mkfs` tool to create a file system on top of it.
 
 ### LVM Device Naming
 
-To use a logical volume, we need its name, and this can be found in a number of ways. One of the most straightfoward is to address the device as '/dev/vgname/lvname`. Having created a volume with the name `lvvolume`, which gets its disk space from `vgvolume`, the device name would be `/dev/vgvolume/lvvolume`. This is a symlink to the device mapper name.
+To use a logical volume, we need its name, and this can be found in a number of ways. One of the most straightfoward is to address the device as `/dev/vgname/lvname`. Having created a volume with the name `lvvolume`, which gets its disk space from `vgvolume`, the device name would be `/dev/vgvolume/lvvolume`. This is a symlink to the device mapper name.
 
 The device mapper (dm) is an interface that the kernel uses to address storage devices. Devices are generated on detection using names that are created during boot. The dm creates symlinks to the `/dev/mapp` directory pointing to device names. The symlink follows the naming structure of `/dev/mapper/vgname/lvname`. The device `/dev/vgvolume` would also be known as `/dev/mapper/vgvolume-lvvolume`.
 

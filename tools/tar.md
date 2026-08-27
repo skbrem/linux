@@ -74,11 +74,11 @@ These can be implemented in the following way:
 Zstd has become the standard in much of the modern computing world and is superior to other choices in virtually every metric. Use the following to create a `.tar.zst` compressed archive.
 
 ```bash
-tar --zstd -cvf <name-of-archive.tar.zst> -C <source>
+tar --zstd -cvf <name-of-archive>.tar.zst -C <source>
 ```
 
 Try also adding `-$(date +%F)` to it.
 
 ```bash
-tar --zstd -cvf backup-$(date +%F) -C <source>
+tar --zstd -cvf backup-$(date +%F).tar.zst -C <source>
 ```
